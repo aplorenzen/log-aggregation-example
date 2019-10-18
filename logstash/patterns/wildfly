@@ -1,0 +1,3 @@
+JAVA_LOGDATETIME %{YEAR}-%{MONTHNUM}-%{MONTHDAY}[T ]%{HOUR}:%{MINUTE}:%{SECOND}
+JAVACLASS (\.?)([a-zA-Z\$_\[][a-zA-Z$_0-9\-\]]*\.)*[a-zA-Z$_0-9\-\/\]\[]*
+THREAD ([^\]\)]*)
