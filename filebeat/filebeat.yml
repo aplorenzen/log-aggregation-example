@@ -1,0 +1,27 @@
+filebeat.inputs:
+
+  - type: log
+    paths:
+      - /data/log/*.log
+    fields:
+      service: demo-service
+      environment: prod
+      logtype: spring-default
+      timezone: UTC
+    multiline.pattern: '^[0-9]{4}-[0-9]{2}-[0-9]{2}'
+    multiline.negate: true
+    multiline.match: after
+
+name: "filebeat"
+tags: ["prod", "docker"]
+
+filebeat.config.modules:
+  path: ${path.config}/modules.d/*.yml
+  reload.enabled: false
+
+output.logstash:
+  hosts: ["logstash:5044"]
+  index: filebeat_logs
+
+setup.kibana:
+  host: "kibana:5601"

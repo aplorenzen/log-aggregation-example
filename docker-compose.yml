@@ -3,7 +3,7 @@ version: '3.3'
 services:
 
   elasticsearch:
-    image: elasticsearch:7.4.0
+    image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.4.0
     environment:
       ES_JAVA_OPTS: "-Xmx1024m -Xms1024m"
     networks:
@@ -13,7 +13,7 @@ services:
       - elasticsearch.data:/usr/share/elasticsearch/data
 
   logstash:
-    image: logstash:7.4.0
+    image: docker.elastic.co/logstash/logstash-oss:7.4.0
     environment:
       LS_JAVA_OPTS: "-Xmx512m -Xms512m"
     networks:
@@ -21,41 +21,33 @@ services:
     volumes:
       - ./logstash/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
       - ./logstash/pipeline/logstash.conf:/usr/share/logstash/pipeline/logstash.conf:ro
+      - ./logstash/patterns:/usr/share/logstash/patterns:ro
 
   kibana:
-    image: kibana:7.4.0
+    image: docker.elastic.co/kibana/kibana-oss:7.4.0
     ports:
-      - 5601:5601
+      - 80:5601
     networks:
       - elk
     volumes:
       - ./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml:ro
   
   apm:
-    image: docker.elastic.co/apm/apm-server:7.4.0
+    image: docker.elastic.co/apm/apm-server-oss:7.4.0
     volumes:
       - ./apm/apm-server.yml:/usr/share/apm-server/apm-server.yml:ro
     networks:
       - elk
 
-#   filebeat:
-#     build:
-#       context: filebeat/
-#     image: mobylife/filebeat:6.6.1
-#     command: filebeat -e -strict.perms=false
-#     hostname: filebeat
-#     networks:
-#       - default
-# #    network_mode: host
-#     restart: always
-#     container_name: filebeat
-#     volumes:
-#       - /data/log:/data/log:ro
-#       - /var/log:/var/hostlog:ro
-# #      - ./filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
-#       - filebeat.data:/usr/share/filebeat/data
-# #    depends_on:
-# #      - logstash
+  filebeat:
+    image: docker.elastic.co/beats/filebeat-oss:7.4.0
+    command: filebeat -e -strict.perms=false
+    networks:
+      - elk
+    volumes:
+      - ./demo-service/log:/data/log:ro
+      - ./filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+      - filebeat.data:/usr/share/filebeat/data
 
 networks:
   elk:
@@ -64,3 +56,4 @@ networks:
 
 volumes:
   elasticsearch.data:
+  filebeat.data:
