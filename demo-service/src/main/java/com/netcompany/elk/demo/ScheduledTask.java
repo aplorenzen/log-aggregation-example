@@ -10,7 +10,7 @@ import java.util.Map;
 @Component
 public class ScheduledTask {
 
-    @Scheduled(fixedRate = 1000L)
+    // @Scheduled(fixedRate = 1000L)
     public void logSomething() {
         Map<String, String> env = System.getenv();
         env.forEach((key, value) -> {
