@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Defines a property with name serverName from environment/System property/application property named HOSTNAME in context scope -->
+<!-- Please note that property name was changed to serverName to avoid conflicts with HOSTNAME property -->
+<configuration scan="true" scanPeriod="30 seconds">
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <logger name="org.springframework.web" level="DEBUG"/>
+    <appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <fileNamePattern>/opt/log/${HOSTNAME}-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <!-- each file should be at most 10.5MB (default), keep 60 days worth of history, but at most 10GB -->
+            <maxFileSize>10500KB</maxFileSize>
+            <maxHistory>60</maxHistory>
+            <totalSizeCap>10GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${FILE_LOG_PATTERN}</pattern>
+            <charset>utf8</charset>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="ROLLING" />
+    </root>
+</configuration>

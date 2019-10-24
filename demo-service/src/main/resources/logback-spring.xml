@@ -4,7 +4,6 @@
 <configuration scan="true" scanPeriod="30 seconds">
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
-    <springProperty scope="context" name="serverName" source="HOSTNAME" />
     <logger name="org.springframework.web" level="DEBUG"/>
     <appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">

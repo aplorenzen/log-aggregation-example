@@ -24,3 +24,6 @@ spring:
     console:
       enabled: true
       path: /console
+
+server:
+  port: 80

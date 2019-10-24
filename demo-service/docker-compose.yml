@@ -10,4 +10,10 @@ services:
       - java
       - -jar
       - /opt/demo-service.jar
+    networks:
+      - demo
 
+networks:
+  demo:
+    external:
+      name: demo

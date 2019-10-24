@@ -1,0 +1,20 @@
+version: '3.3'
+
+services:
+
+  consumer-service:
+    image: consumer-service:0.1
+    volumes:
+      - ./log/:/opt/log/
+    entrypoint:
+      - java
+      - -jar
+      - /opt/consumer-service.jar
+    networks:
+      - demo
+
+networks:
+  demo:
+    external:
+      name: demo
+
