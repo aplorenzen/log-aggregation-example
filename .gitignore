@@ -5,6 +5,7 @@ target/
 !**/src/test/**
 
 demo-service/log
+consumer-service/log
 
 ### STS ###
 .apt_generated
