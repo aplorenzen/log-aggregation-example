@@ -3,7 +3,7 @@ version: '3.3'
 services:
 
   consumer-service:
-    image: consumer-service:0.1
+    image: consumer-service:latest
     build: ./consumer-service/
     volumes:
       - ./consumer-service/log/:/opt/log/
@@ -15,7 +15,7 @@ services:
       - demo
 
   demo-service:
-    image: demo-service:0.1
+    image: demo-service:latest
     build: ./demo-service/
     volumes:
       - ./demo-service/log/:/opt/log/

@@ -32,12 +32,12 @@ services:
     volumes:
       - ./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml:ro
   
-  apm:
-    image: docker.elastic.co/apm/apm-server-oss:7.4.0
-    volumes:
-      - ./apm/apm-server.yml:/usr/share/apm-server/apm-server.yml:ro
-    networks:
-      - elk
+#  apm:
+#    image: docker.elastic.co/apm/apm-server-oss:7.4.0
+#    volumes:
+#      - ./apm/apm-server.yml:/usr/share/apm-server/apm-server.yml:ro
+#    networks:
+#      - elk
 
   filebeat:
     image: docker.elastic.co/beats/filebeat-oss:7.4.0
