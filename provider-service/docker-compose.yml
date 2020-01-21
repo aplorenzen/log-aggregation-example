@@ -2,14 +2,14 @@ version: '3.3'
 
 services:
 
-  demo-service:
-    image: demo-service:0.1
+  provider-service:
+    image: provider-service:0.1
     volumes:
       - ./log/:/opt/log/
     entrypoint:
       - java
       - -jar
-      - /opt/demo-service.jar
+      - /opt/provider-service.jar
     networks:
       - demo
 

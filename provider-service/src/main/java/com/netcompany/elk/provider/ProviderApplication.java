@@ -1,4 +1,4 @@
-package com.netcompany.elk.demo;
+package com.netcompany.elk.provider;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
@@ -8,10 +8,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @Slf4j
 @EnableScheduling
 @SpringBootApplication
-public class DemoApplication {
+public class ProviderApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+		SpringApplication.run(ProviderApplication.class, args);
 	}
 
 }

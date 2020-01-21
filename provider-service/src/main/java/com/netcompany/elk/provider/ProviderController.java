@@ -1,4 +1,4 @@
-package com.netcompany.elk.demo;
+package com.netcompany.elk.provider;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,7 +8,7 @@ import java.util.Date;
 
 @Slf4j
 @RestController
-public class DemoController {
+public class ProviderController {
 
     @GetMapping("/hello")
     public HelloResponse hello() {

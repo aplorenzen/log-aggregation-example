@@ -2,9 +2,9 @@ filebeat.inputs:
 
   - type: log
     paths:
-      - /data/demo-service/log/*.log
+      - /data/provider-service/log/*.log
     fields:
-      service: demo-service
+      service: provider-service
       environment: prod
       logtype: spring-default
       timezone: UTC

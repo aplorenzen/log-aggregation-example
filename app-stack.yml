@@ -14,15 +14,15 @@ services:
     networks:
       - demo
 
-  demo-service:
-    image: demo-service:latest
-    build: ./demo-service/
+  provider-service:
+    image: provider-service:latest
+    build: ./provider-service/
     volumes:
-      - ./demo-service/log/:/opt/log/
+      - ./provider-service/log/:/opt/log/
     entrypoint:
       - java
       - -jar
-      - /opt/demo-service.jar
+      - /opt/provider-service.jar
     networks:
       - demo
 

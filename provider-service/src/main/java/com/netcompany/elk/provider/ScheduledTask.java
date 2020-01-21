@@ -1,4 +1,4 @@
-package com.netcompany.elk.demo;
+package com.netcompany.elk.provider;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;

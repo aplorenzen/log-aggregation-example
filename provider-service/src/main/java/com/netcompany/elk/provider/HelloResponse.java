@@ -1,4 +1,4 @@
-package com.netcompany.elk.demo;
+package com.netcompany.elk.provider;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

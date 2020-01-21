@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.netcompany.elk</groupId>
-	<artifactId>demo-service</artifactId>
+	<artifactId>provider-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>demo-service</name>
+	<name>provider-service</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>

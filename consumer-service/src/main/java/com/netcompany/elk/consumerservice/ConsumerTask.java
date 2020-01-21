@@ -14,7 +14,7 @@ public class ConsumerTask {
     public void sayHello() {
         try {
             RestTemplate restTemplate = new RestTemplate();
-            HelloResponse helloResponse = restTemplate.getForObject("http://demo-service/hello", HelloResponse.class);
+            HelloResponse helloResponse = restTemplate.getForObject("http://provider-service/hello", HelloResponse.class);
             log.info("Received response: {}", helloResponse);
         } catch (RestClientException e) {
             log.error("Unable to get response for a polite hello, how rude!", e);

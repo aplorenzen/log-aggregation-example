@@ -19,9 +19,9 @@ A few prerequisites:
    
 ### Development
 
-#### Run the demo-service in dev mode
+#### Run the provider-service in dev mode
 ```bash
-cd demo-service
+cd provider-service
 mvnw spring-boot:run
 ```
 
@@ -34,11 +34,11 @@ mvnw spring-boot:run
 ### Buliding the Spring Boot applications
 The following instructions should be initiated from the root of the project
 
-#### Build the demo-service application and docker image
+#### Build the provider-service application and docker image
 ```bash
-cd demo-service
+cd provider-service
 mvnw clean package
-docker build -t demo-service:0.1 .
+docker build -t provider-service:0.1 .
 ```
 
 #### Build the consumer service application and docker image

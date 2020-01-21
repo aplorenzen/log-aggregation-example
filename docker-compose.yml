@@ -45,7 +45,7 @@ services:
     networks:
       - elk
     volumes:
-      - ./demo-service/log:/data/demo-service/log:ro
+      - ./provider-service/log:/data/provider-service/log:ro
       - ./consumer-service/log:/data/consumer-service/log:ro
       - ./filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
       - filebeat.data:/usr/share/filebeat/data
