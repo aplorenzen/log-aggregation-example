@@ -4,6 +4,7 @@ services:
 
   consumer-service:
     image: consumer-service:latest
+    container_name: consumer-service
     build: ./consumer-service/
     volumes:
       - ./consumer-service/log/:/opt/log/
@@ -16,6 +17,7 @@ services:
 
   provider-service:
     image: provider-service:latest
+    container_name: provider-service
     build: ./provider-service/
     volumes:
       - ./provider-service/log/:/opt/log/

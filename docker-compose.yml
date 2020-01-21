@@ -4,6 +4,7 @@ services:
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.4.0
+    container_name: elasticsearch
     environment:
       ES_JAVA_OPTS: "-Xmx1024m -Xms1024m"
     networks:
@@ -14,6 +15,7 @@ services:
 
   logstash:
     image: docker.elastic.co/logstash/logstash-oss:7.4.0
+    container_name: logstash
     environment:
       LS_JAVA_OPTS: "-Xmx512m -Xms512m"
     networks:
@@ -25,8 +27,9 @@ services:
 
   kibana:
     image: docker.elastic.co/kibana/kibana-oss:7.4.0
+    container_name: kibana
     ports:
-      - 80:5601
+      - 5601:5601
     networks:
       - elk
     volumes:
@@ -41,6 +44,7 @@ services:
 
   filebeat:
     image: docker.elastic.co/beats/filebeat-oss:7.4.0
+    container_name: filebeat
     command: filebeat -e -strict.perms=false
     networks:
       - elk
@@ -50,6 +54,16 @@ services:
       - ./filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
       - filebeat.data:/usr/share/filebeat/data
 
+  portainer:
+    image: portainer/portainer
+    container_name: portainer
+    ports:
+      - 8000:8000
+      - 9000:9000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer.data:/data
+
 networks:
   elk:
     external:
@@ -58,3 +72,4 @@ networks:
 volumes:
   elasticsearch.data:
   filebeat.data:
+  portainer.data:
