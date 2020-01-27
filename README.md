@@ -38,12 +38,15 @@ mvnw clean package
 docker build -t consumer-service:0.1 .
 ```
 
+### Starting the ELK and application stacks
+These instructions should be initiated with the project root as working directory.
+
 #### Run the ELK stack
 ```
 docker-compose up
 ```
 
-Optionally use `docker-compose up -d`, to not attach the local terminal session to the stdout from the started containers. 
+Optionally use `docker-compose up -d`, to not attach the local terminal session to the stdout from the started containers. (`docker-compose --help` and `docker-compose up --help` for more switches) 
 
 #### Run the two services (provider and consumer)
 ```
