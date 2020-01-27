@@ -12,7 +12,7 @@ A few prerequisites:
 
 1. You will need to have docker installed!
 2. And you will need to have Java installed in order to build the Spring Boot applications
-3. Make sure that your docker host has 2G+ memory available (on Windows, right click on the Docker icon in the system tray -> "Settinga" -> "Advanced")
+3. Make sure that your docker host has 2G+ memory available (on Windows, right click on the Docker icon in the system tray -> "Settings" -> "Advanced")
 4. You need to prepare two docker networks for the stacks to start:
    * elk (`docker network create elk`)
    * demo (`docker network create demo`)
