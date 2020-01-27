@@ -1,35 +1,25 @@
 # Example - Log Aggregration with ELK
 
-### Introduction
+## Introduction
 This repository contains an example of how to get started with log aggregation with the ELK stack.
 
 It contains basic configuration and a docker-compose definition for and ELK stack, including a filebeat container.
 Also it contains two very simple spring boot containers, where one will be trying to reach a REST endpoint of the other service.
 
-### Setting up
+## Setting up
 
 A few prerequisites:
 
 1. You will need to have docker installed!
 2. And you will need to have Java installed in order to build the Spring Boot applications
-3. Make sure that your docker host (on Windows that means the Docker VM, configured through the Hyper-V Manager) has 2G+ memory available
+3. Make sure that your docker host has 2G+ memory available (on Windows, right click on the Docker icon in the system tray -> "Settinga" -> "Advanced")
 4. You need to prepare two docker networks for the stacks to start:
    * elk (`docker network create elk`)
    * demo (`docker network create demo`)
    
-### Development
+## Demo
 
-#### Run the provider-service in dev mode
-```bash
-cd provider-service
-mvnw spring-boot:run
-```
-
-#### Run the consumer-service in dev mode
-```bash
-cd consumer-service
-mvnw spring-boot:run
-```
+In order to run the demo, you will need to build the Spring boot applications and then a docker image for each of them. Then you will be able to start the ELK and application stacks. 
 
 ### Buliding the Spring Boot applications
 The following instructions should be initiated from the root of the project
@@ -55,9 +45,27 @@ docker-compose up
 
 Optionally use `docker-compose up -d`, to not attach the local terminal session to the stdout from the started containers. 
 
-#### Run the two services (demo and consumer)
+#### Run the two services (provider and consumer)
 ```
 docker-compose -f app-stack.yml up
 ```
 
-This will also build the demo and consumer docker images, but not the java applications. That needs to be done for each of them
+This will also build the demo and consumer docker images if they were not built, but not the java applications. That needs to be done for each of them with maven as described above.
+
+## Development
+
+If you want to do some development on the services, you can run them with the maven wrapper.
+
+### Run the provider-service in dev mode
+```bash
+cd provider-service
+mvnw spring-boot:run
+```
+
+### Run the consumer-service in dev mode
+```bash
+cd consumer-service
+mvnw spring-boot:run
+```
+
+
