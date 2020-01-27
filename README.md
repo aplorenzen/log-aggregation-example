@@ -53,7 +53,7 @@ Optionally use `docker-compose up -d`, to not attach the local terminal session 
 docker-compose -f app-stack.yml up
 ```
 
-This will also build the demo and consumer docker images if they were not built, but not the java applications. That needs to be done for each of them with maven as described above.
+This will also build the provider and consumer docker images if they were not built, but not the java applications. That needs to be done for each of them with maven as described above.
 
 ## Development
 
