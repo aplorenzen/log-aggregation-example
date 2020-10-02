@@ -8,10 +8,6 @@ services:
     build: ./consumer-service/
     volumes:
       - ./consumer-service/log/:/opt/log/
-    entrypoint:
-      - java
-      - -jar
-      - /opt/consumer-service.jar
     networks:
       - demo
 
@@ -21,10 +17,6 @@ services:
     build: ./provider-service/
     volumes:
       - ./provider-service/log/:/opt/log/
-    entrypoint:
-      - java
-      - -jar
-      - /opt/provider-service.jar
     networks:
       - demo
 

@@ -3,13 +3,10 @@ version: '3.3'
 services:
 
   provider-service:
-    image: provider-service:0.1
+    image: provider-service:0.2
+    container_name: provider-service
     volumes:
       - ./log/:/opt/log/
-    entrypoint:
-      - java
-      - -jar
-      - /opt/provider-service.jar
     networks:
       - demo
 

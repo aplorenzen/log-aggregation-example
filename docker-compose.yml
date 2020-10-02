@@ -3,7 +3,7 @@ version: '3.3'
 services:
 
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.4.0
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.9.2
     container_name: elasticsearch
     environment:
       ES_JAVA_OPTS: "-Xmx1024m -Xms1024m"
@@ -14,7 +14,7 @@ services:
       - elasticsearch.data:/usr/share/elasticsearch/data
 
   logstash:
-    image: docker.elastic.co/logstash/logstash-oss:7.4.0
+    image: docker.elastic.co/logstash/logstash:7.9.2
     container_name: logstash
     environment:
       LS_JAVA_OPTS: "-Xmx512m -Xms512m"
@@ -26,7 +26,7 @@ services:
       - ./logstash/patterns:/usr/share/logstash/patterns:ro
 
   kibana:
-    image: docker.elastic.co/kibana/kibana-oss:7.4.0
+    image: docker.elastic.co/kibana/kibana:7.9.2
     container_name: kibana
     ports:
       - 5601:5601
@@ -35,15 +35,17 @@ services:
     volumes:
       - ./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml:ro
   
-#  apm:
-#    image: docker.elastic.co/apm/apm-server-oss:7.4.0
-#    volumes:
-#      - ./apm/apm-server.yml:/usr/share/apm-server/apm-server.yml:ro
-#    networks:
-#      - elk
+  apm:
+    image: docker.elastic.co/apm/apm-server:7.9.2
+    container_name: apm
+    volumes:
+      - ./apm/apm-server.yml:/usr/share/apm-server/apm-server.yml:ro
+    networks:
+      - elk
+      - demo
 
   filebeat:
-    image: docker.elastic.co/beats/filebeat-oss:7.4.0
+    image: docker.elastic.co/beats/filebeat:7.9.2
     container_name: filebeat
     command: filebeat -e -strict.perms=false
     networks:
@@ -54,20 +56,27 @@ services:
       - ./filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
       - filebeat.data:/usr/share/filebeat/data
 
-  portainer:
-    image: portainer/portainer
-    container_name: portainer
-    ports:
-      - 8000:8000
-      - 9000:9000
+  metricbeat:
+    image: docker.elastic.co/beats/metricbeat:7.9.2
+    container_name: metricbeat
+    environment:
+      setup.kibana.host: "kibana:5601"
+      output.elasticsearch.hosts: "[\"elasticsearch:9200\"]"
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - portainer.data:/data
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /sys/fs/cgroup:/hostfs/sys/fs/cgroup:ro
+      - /proc:/hostfs/proc:ro
+      - /:/hostfs:ro
+    networks:
+      - elk
 
 networks:
   elk:
     external:
       name: elk
+  demo:
+    external:
+      name: demo
 
 volumes:
   elasticsearch.data:
